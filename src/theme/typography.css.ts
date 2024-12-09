@@ -2,5 +2,5 @@ import { createTheme } from '@vanilla-extract/css';
 
 export const [themeClass, typography] = createTheme({
   htmlFontSize: '16px',
-  fontFamily: "'Inter Variable', monospace",
+  fontFamily: "'Inter Variable', sans-serif",
 });
