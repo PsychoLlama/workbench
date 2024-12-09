@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './_record.css';
+import { HeadFC } from 'gatsby';
 
 const ScreenRecording = () => {
   const [recording, setRecording] = React.useState(false);
@@ -67,6 +68,6 @@ const ScreenRecording = () => {
   );
 };
 
-export const Head = () => <title>Screen Recording</title>;
+export const Head: HeadFC = () => <title>Screen Recording</title>;
 
 export default ScreenRecording;

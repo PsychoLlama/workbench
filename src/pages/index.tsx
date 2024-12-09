@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from './_index.css';
-import { Link } from 'gatsby';
+import { HeadFC, Link } from 'gatsby';
 
 const Workbench: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ const Workbench: React.FC = () => {
   );
 };
 
-export const Head = () => (
+export const Head: HeadFC = () => (
   <>
     <title>Workbench</title>
   </>
