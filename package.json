@@ -1,0 +1,44 @@
+{
+  "name": "@psychollama/workbench",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Miscellaneous tools",
+  "author": "Jesse Gibson <JesseTheGibson@gmail.com>",
+  "homepage": "https://tools.psychollama.io",
+  "repository": "github:PsychoLlama/workbench",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
+    "typecheck": "tsc",
+    "test": "./bin/run-tests",
+    "lint": "eslint src --color"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.0.19",
+    "classnames": "^2.5.1",
+    "gatsby": "^5.13.3",
+    "immer": "^10.1.1",
+    "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/react": "^18.3.3",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@vanilla-extract/css": "^1.14.1",
+    "@vanilla-extract/webpack-plugin": "^2.3.6",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react": "^7.37.2",
+    "gatsby-plugin-vanilla-extract": "^4.0.2",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.0.0"
+  }
+}

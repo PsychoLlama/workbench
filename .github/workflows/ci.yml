@@ -1,0 +1,18 @@
+on: push
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - run: nix develop --command npm clean-install
+      - run: nix develop --command npm run build
+      - run: nix develop --command npm run test
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages deploy ./public --project-name workbench
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
