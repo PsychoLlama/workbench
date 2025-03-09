@@ -1,1 +1,1 @@
-export { default } from './ScreenRecorder';
+export { ScreenRecorder } from './ScreenRecorder';

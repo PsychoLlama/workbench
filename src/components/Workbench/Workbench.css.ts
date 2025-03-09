@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { spacing } from '../theme';
+import { spacing } from '../../theme';
 
 export const header = style({
   margin: 0,

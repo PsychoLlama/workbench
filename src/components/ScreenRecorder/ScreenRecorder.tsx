@@ -3,7 +3,7 @@ import * as styles from './ScreenRecorder.css';
 import logger from '@holz/logger';
 import { useScreenRecordingSupport } from './hooks';
 
-const ScreenRecorder: React.FC = () => {
+export const ScreenRecorder: React.FC = () => {
   const [recording, setRecording] = React.useState(false);
   const [downloadUrl, setDownloadUrl] = React.useState<null | string>(null);
   const [downloadTitle, setDownloadTitle] = React.useState('recording.mp4');
@@ -166,5 +166,3 @@ const ScreenRecorder: React.FC = () => {
     </main>
   );
 };
-
-export default ScreenRecorder;

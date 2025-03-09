@@ -1,26 +1,6 @@
 import React from 'react';
-import * as styles from './_index.css';
-import { HeadFC, Link } from 'gatsby';
+import { HeadFC } from 'gatsby';
 
-const Workbench: React.FC = () => {
-  return (
-    <main role="main">
-      <h1 className={styles.header}>Workbench</h1>
-      <ul className={styles.launchers}>
-        <li>
-          <Link to="/record" className={styles.launcher}>
-            Screen Recording
-          </Link>
-        </li>
-      </ul>
-    </main>
-  );
-};
+export const Head: HeadFC = () => <title>Apps | Workbench</title>;
 
-export const Head: HeadFC = () => (
-  <>
-    <title>Workbench</title>
-  </>
-);
-
-export default Workbench;
+export { Workbench as default } from '../components/Workbench';
