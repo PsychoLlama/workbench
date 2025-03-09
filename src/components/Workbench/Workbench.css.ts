@@ -1,5 +1,5 @@
 import { style, keyframes } from '@vanilla-extract/css';
-import { spacing, palette, breakpoints } from '../../theme';
+import { spacing, palette, breakpoints, typography } from '../../theme';
 
 const fadeIn = keyframes({
   '0%': { opacity: 0, transform: 'translateY(10px)' },
@@ -161,6 +161,7 @@ export const appIconContainer = style({
   alignItems: 'center',
   fontSize: '3.5rem',
   color: palette.primary.main,
+  fontFamily: typography.emojiFontFamily,
   background: 'rgba(0, 0, 0, 0.1)',
   transition: 'all 0.3s ease',
   selectors: {
