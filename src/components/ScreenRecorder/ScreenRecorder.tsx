@@ -2,6 +2,7 @@ import React from 'react';
 import * as styles from './ScreenRecorder.css';
 import logger from '@holz/logger';
 import { useScreenRecordingSupport } from './hooks';
+import { Navbar } from '../Navbar';
 
 export const ScreenRecorder: React.FC = () => {
   const [recording, setRecording] = React.useState(false);
@@ -82,17 +83,16 @@ export const ScreenRecorder: React.FC = () => {
   };
 
   return (
-    <main role="main" className={styles.container}>
-      <h1 className={styles.header}>Screen Recorder</h1>
+    <>
+      <Navbar title="Screen Recorder" />
 
-      <div className={styles.card}>
+      <main role="main" className={styles.container}>
         {isSupported === false ? (
           <div className={styles.unsupportedMessage}>
             <div className={styles.unsupportedIcon}>⚠️</div>
             <h2 className={styles.unsupportedTitle}>Browser Not Supported</h2>
             <p className={styles.unsupportedText}>
-              Your browser doesn't support the screen recording API. Please try
-              using a modern browser like Chrome, Edge, or Firefox.
+              Your browser doesn't support the screen recording API.
             </p>
           </div>
         ) : (
@@ -162,7 +162,7 @@ export const ScreenRecorder: React.FC = () => {
             )}
           </>
         )}
-      </div>
-    </main>
+      </main>
+    </>
   );
 };

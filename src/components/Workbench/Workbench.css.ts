@@ -12,57 +12,20 @@ export const container = style({
   padding: 0,
 });
 
-export const navbar = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: spacing(0.5, 1),
-  boxSizing: 'border-box',
-  width: '100%',
-  borderBottom: `1px solid rgba(255, 255, 255, 0.1)`,
-  background: 'rgba(0, 0, 0, 0.2)',
-  fontSize: '1.2rem',
-  '@media': {
-    [breakpoints.md]: {
-      fontSize: '1.5rem',
-    },
-  },
-});
-
-export const header = style({
-  margin: 0,
-  fontSize: 'inherit',
-  fontWeight: 700,
-  color: palette.text.secondary,
-});
-
-export const githubLink = style({
-  color: palette.text.secondary,
-  fontSize: 'inherit',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: spacing(0.5),
-  borderRadius: '50%',
-  transition: 'all 0.2s ease',
-  ':hover': {
-    color: palette.primary.main,
-    transform: 'scale(1.1)',
-  },
-});
 
 export const subheader = style({
   color: palette.text.secondary,
   fontWeight: 400,
   margin: 0,
-  padding: spacing(1),
+  padding: spacing(2, 1),
   fontSize: '1.1rem',
   display: 'flex',
   justifyContent: 'center',
+  textAlign: 'center',
   '@media': {
     [breakpoints.md]: {
       fontSize: '1.2rem',
-      padding: spacing(2, 1),
+      padding: spacing(3, 1),
     },
   },
 });
@@ -75,6 +38,7 @@ export const apps = style({
   boxSizing: 'border-box',
   width: '100%',
   margin: '0 auto',
+  padding: 0,
   '@media': {
     [breakpoints.md]: {
       padding: spacing(1, 2),
@@ -96,6 +60,7 @@ export const appCard = style({
   animationFillMode: 'both',
   position: 'relative',
   boxSizing: 'border-box',
+  margin: 0,
   ':hover': {
     boxShadow: '0 12px 40px rgba(0, 0, 0, 0.2)',
     background: 'rgba(255, 255, 255, 0.1)',

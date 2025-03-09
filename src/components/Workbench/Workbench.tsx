@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from './Workbench.css';
 import { Link } from 'gatsby';
-import { FaGithub } from 'react-icons/fa';
+import { Navbar } from '../Navbar';
 
 interface AppInfo {
   id: string;
@@ -24,20 +24,9 @@ const apps: AppInfo[] = [
 export const Workbench: React.FC = () => {
   return (
     <main role="main" className={styles.container}>
-      <nav className={styles.navbar}>
-        <h1 className={styles.header}>Workbench</h1>
-        <a
-          href="https://github.com/PsychoLlama/workbench"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.githubLink}
-          aria-label="View source on GitHub"
-        >
-          <FaGithub />
-        </a>
-      </nav>
+      <Navbar title="Workbench" />
 
-      <div>
+      <div style={{ width: '100%' }}>
         <p className={styles.subheader}>
           A collection of productivity tools and experiments.
         </p>

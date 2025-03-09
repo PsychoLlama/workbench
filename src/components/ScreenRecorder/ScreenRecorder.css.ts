@@ -1,5 +1,5 @@
 import { keyframes, style } from '@vanilla-extract/css';
-import { palette, spacing, breakpoints } from '../../theme';
+import { palette, spacing, breakpoints, typography } from '../../theme';
 
 // Animations
 const fadeIn = keyframes({
@@ -13,101 +13,14 @@ const pulse = keyframes({
   '100%': { opacity: 1, transform: 'scale(1)' },
 });
 
-const slideUp = keyframes({
-  '0%': { transform: 'translateY(20px)', opacity: 0 },
-  '100%': { transform: 'translateY(0)', opacity: 1 },
-});
-
 // Main container
 export const container = style({
-  padding: spacing(2),
   display: 'flex',
   flexDirection: 'column',
-  gap: spacing(3),
-  width: '100%',
-  maxWidth: '95%',
-  margin: '0 auto',
   alignItems: 'center',
   animation: `${fadeIn} 0.5s ease-in-out`,
   boxSizing: 'border-box',
-  '@media': {
-    [breakpoints.sm]: {
-      padding: spacing(3),
-      maxWidth: '85%',
-    },
-    [breakpoints.md]: {
-      padding: spacing(4),
-      maxWidth: '800px',
-    },
-    [breakpoints.lg]: {
-      maxWidth: '1000px',
-    },
-  },
-});
-
-// Header styles
-export const header = style({
-  margin: `${spacing(2)} 0 ${spacing(3)}`,
-  fontSize: '1.8rem',
-  color: palette.primary.main,
-  textAlign: 'center',
-  fontWeight: 700,
-  position: 'relative',
-  paddingBottom: spacing(1.5),
-  width: '100%',
-  '@media': {
-    [breakpoints.sm]: {
-      fontSize: '2.2rem',
-      '::after': {
-        width: '120px',
-      },
-    },
-    [breakpoints.md]: {
-      fontSize: '2.5rem',
-      '::after': {
-        width: '160px',
-      },
-    },
-  },
-  '::after': {
-    content: '""',
-    position: 'absolute',
-    bottom: 0,
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '80px',
-    height: '3px',
-    background: `linear-gradient(90deg, ${palette.primary.light}, ${palette.primary.main})`,
-    borderRadius: '2px',
-  },
-});
-
-// Card container for content
-export const card = style({
-  background: 'rgba(255, 255, 255, 0.05)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: '16px',
-  padding: spacing(1.5),
-  width: '100%',
-  maxWidth: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: spacing(2),
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  animation: `${slideUp} 0.5s ease-out`,
-  overflow: 'hidden',
-  boxSizing: 'border-box',
-  margin: '0 auto',
-  '@media': {
-    [breakpoints.sm]: {
-      padding: spacing(3),
-    },
-    [breakpoints.md]: {
-      padding: spacing(4),
-    },
-  },
+  padding: spacing(2),
 });
 
 // Button styles
@@ -122,7 +35,7 @@ export const button = style({
   justifyContent: 'center',
   gap: spacing(1),
   width: '100%',
-  maxWidth: '250px',
+  maxWidth: 'max-content',
   borderWidth: '2px',
   borderStyle: 'solid',
   borderColor: palette.primary.main,
@@ -193,14 +106,21 @@ export const recordingButton = style({
 // Video container
 export const videoContainer = style({
   width: '100%',
-  marginTop: spacing(3),
   borderRadius: '12px',
   overflow: 'hidden',
   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
   border: '1px solid rgba(255, 255, 255, 0.1)',
   animation: `${fadeIn} 0.5s ease-in-out`,
-  aspectRatio: '16 / 9',
   background: 'rgba(0, 0, 0, 0.2)',
+  margin: spacing(2, 0),
+  '@media': {
+    [breakpoints.md]: {
+      maxWidth: '75%',
+    },
+    [breakpoints.lg]: {
+      maxWidth: '50%',
+    },
+  },
 });
 
 export const video = style({
@@ -216,7 +136,6 @@ export const downloadLink = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: spacing(1),
-  marginTop: spacing(3),
   padding: spacing(1.5, 3),
   backgroundColor: 'rgba(76, 175, 80, 0.1)',
   color: palette.secondary?.main || '#4caf50',
@@ -300,8 +219,9 @@ export const recordingDot = style({
 
 // Unsupported browser message
 export const unsupportedMessage = style({
-  padding: spacing(3),
+  padding: spacing(2),
   margin: spacing(2, 0),
+  boxSizing: 'border-box',
   backgroundColor: 'rgba(244, 67, 54, 0.08)',
   color: palette.error.dark,
   borderRadius: '16px',
@@ -311,7 +231,7 @@ export const unsupportedMessage = style({
   border: `1px solid rgba(244, 67, 54, 0.3)`,
   display: 'flex',
   flexDirection: 'column',
-  gap: spacing(2),
+  gap: spacing(1),
   animation: `${fadeIn} 0.5s ease-in-out`,
 });
 
@@ -319,6 +239,7 @@ export const unsupportedIcon = style({
   fontSize: '3rem',
   margin: '0 auto',
   color: palette.error.main,
+  fontFamily: typography.emojiFontFamily,
 });
 
 export const unsupportedTitle = style({
@@ -331,8 +252,8 @@ export const unsupportedTitle = style({
 export const unsupportedText = style({
   fontSize: '1rem',
   lineHeight: 1.6,
-  margin: spacing(0, 0),
-  maxWidth: '90%',
+  margin: 0,
+  padding: 0,
   marginLeft: 'auto',
   marginRight: 'auto',
 });
@@ -380,13 +301,7 @@ export const instructionsList = style({
 });
 
 export const instructionItem = style({
-  marginBottom: spacing(1.5),
+  marginBottom: spacing(0.5),
   lineHeight: 1.4,
-  fontSize: '0.95rem',
-  wordBreak: 'break-word',
-  '@media': {
-    [breakpoints.sm]: {
-      fontSize: '1rem',
-    },
-  },
+  fontSize: '1rem',
 });
