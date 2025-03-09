@@ -10,6 +10,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
+    "clean": "gatsby clean",
     "typecheck": "tsc",
     "test": "./bin/run-tests",
     "lint": "eslint src --color"
