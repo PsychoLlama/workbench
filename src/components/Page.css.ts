@@ -12,4 +12,6 @@ export const page = style({
   color: palette.text.primary,
   backgroundColor: palette.background.default,
   minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
 });
