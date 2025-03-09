@@ -36,6 +36,5 @@ export const githubLink = style({
   transition: 'all 0.2s ease',
   ':hover': {
     color: palette.primary.main,
-    transform: 'scale(1.1)',
   },
 });
