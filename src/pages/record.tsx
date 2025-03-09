@@ -8,6 +8,8 @@ const ScreenRecording = () => {
   const [downloadUrl, setDownloadUrl] = React.useState<null | string>(null);
   const [downloadTitle, setDownloadTitle] = React.useState('recording.mp4');
   const [recorder, setRecorder] = React.useState<null | MediaRecorder>(null);
+  const [recordingTime, setRecordingTime] = React.useState(0);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const startRecording = React.useCallback((stream: MediaStream) => {
     logger.info('Recording started', {
@@ -18,6 +20,12 @@ const ScreenRecording = () => {
     const recorder = new MediaRecorder(stream);
     setRecorder(recorder);
     setRecording(true);
+    setRecordingTime(0);
+
+    // Start timer
+    timerRef.current = setInterval(() => {
+      setRecordingTime((prev) => prev + 1);
+    }, 1000);
 
     const chunks: Blob[] = [];
 
@@ -47,6 +55,12 @@ const ScreenRecording = () => {
     setRecording(false);
     logger.info('Finished recording');
     recorder?.stop();
+
+    // Clear timer
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
   }, [recorder]);
 
   const recordScreen = React.useCallback(() => {
@@ -59,12 +73,29 @@ const ScreenRecording = () => {
       });
   }, []);
 
+  // Format time as mm:ss
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   return (
     <main role="main" className={styles.container}>
-      <h1 className={styles.header}>Record Screen</h1>
+      <h1 className={styles.header}>Screen Recorder</h1>
+
+      {recording && (
+        <div className={styles.statusIndicator}>
+          <div className={styles.recordingDot}></div>
+          Recording in progress - {formatTime(recordingTime)}
+        </div>
+      )}
 
       {recording ? (
-        <button className={styles.button} onClick={stopRecording}>
+        <button
+          className={`${styles.button} ${styles.recordingButton}`}
+          onClick={stopRecording}
+        >
           Stop Recording
         </button>
       ) : (
@@ -75,8 +106,14 @@ const ScreenRecording = () => {
 
       {downloadUrl && (
         <>
-          <video src={downloadUrl} controls />
-          <a href={downloadUrl} download={downloadTitle}>
+          <div className={styles.videoContainer}>
+            <video className={styles.video} src={downloadUrl} controls />
+          </div>
+          <a
+            className={styles.downloadLink}
+            href={downloadUrl}
+            download={downloadTitle}
+          >
             Download Recording
           </a>
         </>
@@ -85,6 +122,6 @@ const ScreenRecording = () => {
   );
 };
 
-export const Head: HeadFC = () => <title>Screen Recording</title>;
+export const Head: HeadFC = () => <title>Screen Recorder | Workbench</title>;
 
 export default ScreenRecording;
