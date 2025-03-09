@@ -16,4 +16,5 @@ export const shape = { radius };
 export { palette } from './palette.css';
 export { transition } from './transition.css';
 export { typography } from './typography.css';
+export { breakpoints } from './breakpoints.css';
 export { grey } from './color';
