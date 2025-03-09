@@ -1,6 +1,7 @@
 import React from 'react';
 import * as styles from './_record.css';
 import { HeadFC } from 'gatsby';
+import logger from '@holz/logger';
 
 const ScreenRecording = () => {
   const [recording, setRecording] = React.useState(false);
@@ -9,6 +10,11 @@ const ScreenRecording = () => {
   const [recorder, setRecorder] = React.useState<null | MediaRecorder>(null);
 
   const startRecording = React.useCallback((stream: MediaStream) => {
+    logger.info('Recording started', {
+      id: stream.id,
+      active: stream.active,
+    });
+
     const recorder = new MediaRecorder(stream);
     setRecorder(recorder);
     setRecording(true);
@@ -22,9 +28,16 @@ const ScreenRecording = () => {
     recorder.onstop = () => {
       const blob = new Blob(chunks, { type: 'video/mp4' });
       const url = URL.createObjectURL(blob);
+      stream.getTracks().forEach((track) => track.stop());
+
       setRecording(false);
       setDownloadUrl(url);
       setDownloadTitle(`screen-recording-${Date.now()}.mp4`);
+      logger.info('Recording stopped', {
+        id: stream.id,
+        active: stream.active,
+        url,
+      });
     };
 
     recorder.start();
@@ -32,14 +45,18 @@ const ScreenRecording = () => {
 
   const stopRecording = React.useCallback(() => {
     setRecording(false);
-    console.log('STOPPING:', recorder);
+    logger.info('Finished recording');
     recorder?.stop();
   }, [recorder]);
 
   const recordScreen = React.useCallback(() => {
     navigator.mediaDevices
       .getDisplayMedia({ video: true })
-      .then(startRecording, console.error);
+      .then(startRecording, (error) => {
+        logger.error('Error getting display media', {
+          error: String(error),
+        });
+      });
   }, []);
 
   return (
