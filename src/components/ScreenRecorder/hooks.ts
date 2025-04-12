@@ -127,17 +127,17 @@ export const useScreenRecorder = () => {
 
   const recordScreen = React.useCallback(() => {
     // Clear previous recording when starting a new one
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       downloadUrl: null,
       downloadTitle: 'recording.mp4',
     }));
-    
+
     navigator.mediaDevices
       .getDisplayMedia({ video: true })
-      .then(startRecording, (error) => {
+      .then(startRecording, (error: DOMException) => {
         logger.error('Error getting display media', {
-          error: String(error),
+          error,
         });
       });
   }, [startRecording]);
