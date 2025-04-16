@@ -103,10 +103,7 @@ export const useScreenRecorder = () => {
 
     mediaRecorder.onerror = (event: Event) => {
       const { error } = event as MediaRecorderErrorEvent;
-      logger.error('Recording failed', {
-        message: error.message,
-        name: error.name,
-      });
+      logger.error('Recording failed', { error });
     };
 
     mediaRecorder.start();
@@ -136,9 +133,7 @@ export const useScreenRecorder = () => {
     navigator.mediaDevices
       .getDisplayMedia({ video: true })
       .then(startRecording, (error: DOMException) => {
-        logger.error('Error getting display media', {
-          error,
-        });
+        logger.error('Error getting display media', { error });
       });
   }, [startRecording]);
 
