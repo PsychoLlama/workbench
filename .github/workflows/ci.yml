@@ -21,5 +21,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy ./public --project-name workbench
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: deploy
