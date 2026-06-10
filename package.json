@@ -41,7 +41,7 @@
     "eslint": "^9.39.2",
     "eslint-plugin-react": "^7.37.2",
     "gatsby-plugin-vanilla-extract": "^4.0.2",
-    "typescript": "^5.3.3",
+    "typescript": "^6.0.0",
     "typescript-eslint": "^8.55.0",
     "wrangler": "^4.65.0"
   }
